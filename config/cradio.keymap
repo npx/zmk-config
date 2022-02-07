@@ -10,6 +10,18 @@
 #define MAINT   5
 
 / { 
+    behaviors {
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS";
+            #binding-cells = <2>;
+            tapping-term-ms = <175>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
     combos {
         compatible = "zmk,combos";
 
@@ -20,16 +32,16 @@
             layers = <0>;
         };
 
-        combo_tab {
-            timeout-ms = <50>;
-            key-positions = <11 12 31>;
-            bindings = <&kp TAB>;
-            layers = <0>;
-        };
+        // combo_tab {
+        //     timeout-ms = <50>;
+        //     key-positions = <11 12 31>;
+        //     bindings = <&kp TAB>;
+        //     layers = <0>;
+        // };
 
         combo_return {
             timeout-ms = <50>;
-            key-positions = <17 18 32>;
+            key-positions = <7 8 32>;
             bindings = <&kp RET>;
             layers = <0>;
         };
@@ -50,16 +62,16 @@
         default_layer {
             bindings = <
                 &kp Q       &kp W        &kp E        &kp R        &kp T                &kp Y        &kp U        &kp I        &kp O        &kp P         
-                &kp A       &mt LSFT S   &mt LCTL D   &mt LALT F   &kp G                &kp H        &mt RALT J   &mt RCTL K   &mt RSFT L   &kp SEMI      
-                &kp Z       &kp X        &kp C        &mt LGUI V   &kp B                &kp N        &mt LGUI M   &kp CMMA     &kp DOT      &kp UNDER     
-                                         &lt NAVI CAPS             &lt LOWER SPACE      &lt RAISE BSPC            &lt MEDIA RET                           
+                &kp A       &hm LSFT S   &hm LCTL D   &hm LALT F   &kp G                &kp H        &hm RALT J   &hm RCTL K   &hm RSFT L   &kp SEMI      
+                &kp Z       &kp X        &kp C        &hm LGUI V   &kp B                &kp N        &hm LGUI M   &kp CMMA     &kp DOT      &kp UNDER     
+                                         &lt NAVI COLON            &lt LOWER SPACE      &lt RAISE BSPC            &lt MEDIA ESC                           
                 >;
         };
 
         LOWER {
             bindings = <
-                &kp TAB     &kp LPAR     &kp RPAR     &kp BSLH     &kp TILDE            &none        &kp N7       &kp N8       &kp N9       &kp RET      
-                &kp GRAVE   &kp DQT      &kp SQT      &kp AMPS     &kp PIPE             &kp CMMA     &kp N4       &kp N5       &kp N6       &kp DOT      
+                &kp TAB     &kp LPAR     &kp RPAR     &kp BSLH     &kp TILDE            &kp DOT      &kp N7       &kp N8       &kp N9       &none        
+                &kp GRAVE   &kp DQT      &kp SQT      &kp AMPS     &kp PIPE             &kp CMMA     &kp N4       &kp N5       &kp N6       &kp RET      
                 &kp AT      &kp LBKT     &kp RBKT     &kp QMARK    &kp HASH             &caps_word   &kp N1       &kp N2       &kp N3       &none        
                                          &trans                    &none                &trans                    &lt MEDIA N0                            
                 >;
@@ -67,9 +79,9 @@
 
         RAISE {
             bindings = <
-                &none       &none        &none        &none        &none                &kp CARET    &kp DOLLAR   &kp LBRC     &kp RBRC     &kp RET      
-                &none       &none        &none        &none        &none                &kp PLUS     &kp MINUS    &kp EQUAL    &kp EXCL     &kp PRCNT    
-                &none       &none        &none        &none        &none                &kp STAR     &kp SLASH    &kp LT       &kp GT       &kp COLON    
+                &trans      &trans       &trans       &trans       &trans               &kp CARET    &kp DOLLAR   &kp LBRC     &kp RBRC     &kp RET      
+                &trans      &trans       &trans       &trans       &trans               &kp PLUS     &kp MINUS    &kp EQUAL    &kp EXCL     &kp PRCNT    
+                &trans      &trans       &trans       &trans       &trans               &kp STAR     &kp SLASH    &kp LT       &kp GT       &kp COLON    
                                          &trans                    &trans               &none                     &trans                                  
                 >;
         };
@@ -86,7 +98,7 @@
         MEDIA {
             bindings = <
                 &none       &none        &none        &none        &none                &none       &none        &none        &none        &none         
-                &none       &none        &none        &none        &none                &none       &none        &none        &none        &none         
+                &none       &none        &none        &none        &none                &kp C_MUTE  &kp C_VOL_DN &kp C_VOL_UP &none        &none         
                 &none       &none        &none        &none        &none                &none       &none        &none        &none        &none         
                                          &mo MAINT                 &trans               &trans                   &none                                   
                 >;
@@ -94,8 +106,8 @@
 
         MAINT {
             bindings = <
-                &bt BT_CLR  &none        &none        &none        &none                &none       &none        &none        &none        &none         
-                &none       &none        &none        &none        &none                &none       &bt BT_NXT   &bt BT_PRV   &none        &none         
+                &bt BT_CLR  &none        &none        &none        &none                &none       &bt BT_NXT   &bt BT_PRV   &none        &none         
+                &none       &none        &none        &none        &none                &none       &to DEFAULT  &none        &none        &none         
                 &none       &none        &none        &none        &none                &none       &none        &none        &none        &none         
                                          &none                     &none                &none                    &none                                   
                 >;
