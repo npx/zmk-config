@@ -8,6 +8,7 @@
 #define NAVI    3 
 #define MEDIA   4 
 #define MAINT   5
+#define TETRIS  6
 
 &caps_word {
     continue-list = <UNDERSCORE BSPC>;
@@ -60,7 +61,14 @@
             label = "VIM_WRITE";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp COLON &kp W>;
+            bindings = <&macro_tap &kp COLON &kp W &kp RET>;
+        };
+
+        vimwq: vim_wq {
+            label = "VIM_WRITE_QUIT";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp COLON &kp W &kp Q &kp RET>;
         };
     };
 
@@ -72,8 +80,8 @@
         compatible = "zmk,conditional-layers";
 
         tri_layer {
-            if-layers = <3 4>;
-            then-layer = <5>;
+            if-layers = <LOWER RAISE>;
+            then-layer = <MAINT>;
         };
     };
 
@@ -101,7 +109,7 @@
         RAISE {
             bindings = <
                 &none       &none        &none        &none        &none                &kp CARET    &kp DOLLAR   &kp LBRC     &kp RBRC     &kp RET      
-                &none       &vimwrite    &none        &osxprnt     &none                &kp PLUS     &kp MINUS    &kp EQUAL    &kp EXCL     &kp PRCNT    
+                &vimwq      &vimwrite    &none        &osxprnt     &none                &kp PLUS     &kp MINUS    &kp EQUAL    &kp EXCL     &kp PRCNT    
                 &none       &none        &none        &none        &none                &kp STAR     &kp SLASH    &kp LT       &kp GT       &kp COLON    
                                          &none                     &trans               &none                     &trans                                  
                 >;
@@ -127,10 +135,19 @@
 
         MAINT {
             bindings = <
-                &bt BT_CLR  &none        &none        &none        &none                &none       &bt BT_NXT   &bt BT_PRV   &none        &none         
-                &none       &none        &none        &none        &none                &none       &to DEFAULT  &none        &none        &none         
+                &bt BT_CLR  &none        &none        &none        &to TETRIS           &none       &bt BT_NXT   &bt BT_PRV   &none        &none         
+                &none       &none        &none        &none        &none                &none       &to DEFAULT  &kp I        &none        &none         
                 &none       &none        &none        &none        &none                &none       &none        &none        &none        &none         
                                          &none                     &none                &none                    &none                                   
+                >;
+        };
+
+        TETRIS {
+            bindings = <
+                &kp ESC     &none        &none        &kp R        &none                &none       &kp N1       &kp N2       &kp N3       &kp N4        
+                &none       &kp Z        &kp X        &kp C        &kp A                &none       &kp LEFT     &kp DOWN     &kp RIGHT    &none         
+                &none       &none        &none        &none        &none                &none       &none        &none        &none        &to DEFAULT   
+                                         &none                     &kp SPACE            &kp LEFT                 &none                                   
                 >;
         };
     };
