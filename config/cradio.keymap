@@ -138,7 +138,7 @@
         MAINT {
             bindings = <
                 &bt BT_CLR  &none        &none        &none        &to TETRIS           &none       &bt BT_PRV   &bt BT_NXT   &none        &none         
-                &reset      &none        &none        &none        &none                &none       &to DEFAULT  &kp I        &none        &reset        
+                &bootloader &none        &none        &none        &none                &none       &to DEFAULT  &kp I        &none        &bootloader   
                 &none       &none        &none        &none        &none                &none       &none        &none        &none        &none         
                                          &none                     &none                &none                    &none                                   
                 >;
