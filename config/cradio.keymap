@@ -10,6 +10,8 @@
 #define MAINT   5
 #define TETRIS  6
 
+#define WM(KEY) &kp LS(LC(LA(KEY)))
+
 &caps_word {
     continue-list = <UNDERSCORE BSPC>;
 };
@@ -20,7 +22,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "HOMEROW_MODS";
             #binding-cells = <2>;
-            tapping-term-ms = <175>;
+            tapping-term-ms = <300>;
             quick-tap-ms = <0>;
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
@@ -100,18 +102,18 @@
         LOWER {
             bindings = <
                 &kp TAB     &kp LPAR     &kp RPAR     &kp BSLH     &kp TILDE            &kp DOT      &kp N7       &kp N8       &kp N9       &kp SLASH    
-                &kp GRAVE   &kp DQT      &kp SQT      &kp AMPS     &kp PIPE             &kp COLON    &kp N4       &kp N5       &kp N6       &kp RET      
-                &kp AT      &kp LBKT     &kp RBKT     &kp QMARK    &kp HASH             &kp MINUS    &kp N1       &kp N2       &kp N3       &none        
+                &kp GRAVE   &kp DQT      &kp SQT      &kp AMPS     &kp PIPE             &kp PLUS     &kp N4       &kp N5       &kp N6       &kp RET      
+                &kp AT      &kp LBKT     &kp RBKT     &kp QMARK    &kp HASH             &kp MINUS    &kp N1       &kp N2       &kp N3       &kp COLON    
                                          &trans                    &none                &trans                    &kp N0                                  
                 >;
         };
 
         RAISE {
             bindings = <
-                &none       &none        &none        &none        &none                &kp CARET    &kp DOLLAR   &kp LBRC     &kp RBRC     &kp RET      
-                &vimwq      &vimwrite    &none        &osxprnt     &none                &kp PLUS     &kp MINUS    &kp EQUAL    &kp EXCL     &kp PRCNT    
-                &none       &none        &none        &none        &none                &kp STAR     &kp SLASH    &kp LT       &kp GT       &kp UNDER    
-                                         &none                     &trans               &none                     &trans                                  
+                WM(Q)       WM(J)        WM(K)        WM(R)        WM(T)                &kp CARET    &kp DOLLAR   &kp LBRC     &kp RBRC     &kp RET      
+                WM(A)       WM(S)        WM(D)        WM(F)        WM(G)                &kp PLUS     &kp MINUS    &kp EQUAL    &kp EXCL     &kp PRCNT    
+                &none       &none        &none        &none        WM(B)                &kp STAR     &kp SLASH    &kp LT       &kp GT       &kp UNDER    
+                                         WM(Y)                     &trans               &none                     &trans                                  
                 >;
         };
 
@@ -127,7 +129,7 @@
         MEDIA {
             bindings = <
                 &none       &none        &none        &none        &none                &none       &none        &none        &none        &none         
-                &none       &none        &none        &none        &none                &kp C_MUTE  &kp C_VOL_DN &kp C_VOL_UP &none        &none         
+                &none       &osxprnt     &none        &none        &none                &kp C_MUTE  &kp C_VOL_DN &kp C_VOL_UP &none        &none         
                 &none       &none        &none        &none        &none                &none       &none        &none        &none        &none         
                                          &mo MAINT                 &trans               &trans                   &none                                   
                 >;
@@ -135,8 +137,8 @@
 
         MAINT {
             bindings = <
-                &bt BT_CLR  &none        &none        &none        &to TETRIS           &none       &bt BT_NXT   &bt BT_PRV   &none        &none         
-                &none       &none        &none        &none        &none                &none       &to DEFAULT  &kp I        &none        &none         
+                &bt BT_CLR  &none        &none        &none        &to TETRIS           &none       &bt BT_PRV   &bt BT_NXT   &none        &none         
+                &reset      &none        &none        &none        &none                &none       &to DEFAULT  &kp I        &none        &reset        
                 &none       &none        &none        &none        &none                &none       &none        &none        &none        &none         
                                          &none                     &none                &none                    &none                                   
                 >;
