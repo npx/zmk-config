@@ -95,6 +95,27 @@
 
     combos {
         compatible = "zmk,combos";
+
+        combo_copy {
+            timeout-ms = <50>;
+            key-positions = <1 2>;
+            layers = <0>;
+            bindings = <&kp LG(C)>;
+        };
+
+        combo_paste {
+            timeout-ms = <50>;
+            key-positions = <11 12>;
+            layers = <0>;
+            bindings = <&kp LG(V)>;
+        };
+
+        combo_cut {
+            timeout-ms = <50>;
+            key-positions = <21 22>;
+            layers = <0>;
+            bindings = <&kp LG(X)>;
+        };
     };
 
     conditional_layers {
