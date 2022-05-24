@@ -11,6 +11,7 @@
 #define TETRIS  6
 
 #define WM(KEY) &kp LS(LC(LA(KEY)))
+#define OSXPRNT LG(LS(LC(N4)))
 
 &caps_word {
     continue-list = <UNDERSCORE BSPC>;
@@ -67,17 +68,6 @@
     };
 
     macros {
-        osxprnt: osx_print_screen {
-            label = "OSX_PRINT_SCREEN";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LGUI &kp LSFT &kp LCTRL>
-                , <&macro_tap &kp N4>
-                , <&macro_release &kp LGUI &kp LSFT &kp LCTRL>
-                ;
-        };
-
         vimwrite: vim_write {
             label = "VIM_WRITE";
             compatible = "zmk,behavior-macro";
@@ -96,26 +86,34 @@
     combos {
         compatible = "zmk,combos";
 
-        combo_copy {
+        osx_combo_copy {
             timeout-ms = <50>;
-            key-positions = <1 2>;
+            key-positions = <1 2 31>;
             layers = <0>;
             bindings = <&kp LG(C)>;
         };
 
-        combo_paste {
+        osx_combo_paste {
             timeout-ms = <50>;
-            key-positions = <11 12>;
+            key-positions = <11 12 31>;
             layers = <0>;
             bindings = <&kp LG(V)>;
         };
 
-        combo_cut {
+        osx_combo_cut {
             timeout-ms = <50>;
-            key-positions = <21 22>;
+            key-positions = <21 22 31>;
             layers = <0>;
             bindings = <&kp LG(X)>;
         };
+
+        osx_combo_screenshot {
+            timeout-ms = <50>;
+            key-positions = <7 8 32>;
+            layers = <0>;
+            bindings = <&kp OSXPRNT>;
+        };
+
     };
 
     conditional_layers {
@@ -169,7 +167,7 @@
         MEDIA {
             bindings = <
                 &none       &none        &none        &none        &none                &none       &none        &none        &none        &none         
-                &none       &osxprnt     &none        &none        &none                &kp C_MUTE  &kp C_VOL_DN &kp C_VOL_UP &none        &none         
+                &none       &kp OSXPRNT  &none        &none        &none                &kp C_MUTE  &kp C_VOL_DN &kp C_VOL_UP &none        &none         
                 &none       &none        &none        &none        &none                &none       &none        &none        &none        &none         
                                          &mo MAINT                 &trans               &trans                   &none                                   
                 >;
