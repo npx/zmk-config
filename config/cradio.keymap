@@ -3,12 +3,13 @@
 #include <dt-bindings/zmk/bt.h>
 
 #define DEFAULT 0
-#define LOWER   1
-#define RAISE   2 
-#define NAVI    3 
-#define MEDIA   4 
-#define MAINT   5
-#define TETRIS  6
+#define COLEMAK 1
+#define LOWER   2
+#define RAISE   3 
+#define NAVI    4 
+#define MEDIA   5 
+#define MAINT   6
+#define TETRIS  7
 
 #define WM(KEY) &kp LS(LC(LA(KEY)))
 #define OSXPRNT LG(LS(LC(N4)))
@@ -137,6 +138,15 @@
                 >;
         };
 
+        COLEMAK {
+            bindings = <
+                &kp Q       &kp W        &kp F        &kp P        &kp B                &kp J       &kp L         &kp U        &kp Y        &kp SQT
+                &kp A       &kp R        &kp S        &kp T        &kp G                &kp M       &kp N         &kp E        &kp I        &kp O
+                &kp Z       &kp X        &kp C        &kp D        &kp V                &kp K       &kp H         &kp CMMA     &kp DOT      &kp SLASH
+                                         &lt NAVI ESC              &lt LOWER SPACE      &lt RAISE BSPC            &tdcase                                 
+                >;
+        };
+
         LOWER {
             bindings = <
                 &kp TAB     &kp LPAR     &kp RPAR     &kp BSLH     &kp TILDE            &kp DOT      &kp N7       &kp N8       &kp N9       &kp SLASH    
@@ -157,38 +167,39 @@
 
         NAVI {
             bindings = <
-                &none       &none        &none        &none        &none                &kp CARET   &none        &none        &kp DOLLAR   &none         
-                &none       &none        &none        &none        &none                &kp LEFT    &kp DOWN     &kp UP       &kp RIGHT    &none         
-                &none       &none        &none        &none        &none                &kp HOME    &kp PG_DN    &kp PG_UP    &kp END      &none         
-                                         &none                     &trans               &trans                   &mo MAINT                               
+                &none       &none        &none        &none        &none                &kp CARET   &none         &none        &kp DOLLAR   &none         
+                &none       &none        &none        &none        &none                &kp LEFT    &kp DOWN      &kp UP       &kp RIGHT    &none         
+                &none       &none        &none        &none        &none                &kp HOME    &kp PG_DN     &kp PG_UP    &kp END      &none         
+                                         &none                     &trans               &trans                    &mo MAINT                               
                 >;
         };
 
         MEDIA {
             bindings = <
-                &none       &none        &none        &none        &none                &none       &none        &none        &none        &none         
-                &none       &kp OSXPRNT  &none        &none        &none                &kp C_MUTE  &kp C_VOL_DN &kp C_VOL_UP &none        &none         
-                &none       &none        &none        &none        &none                &none       &none        &none        &none        &none         
-                                         &mo MAINT                 &trans               &trans                   &none                                   
+                &none       &none        &none        &none        &none                &none       &none         &none        &none        &none         
+                &none       &kp OSXPRNT  &none        &none        &none                &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP &none        &none         
+                &none       &none        &none        &none        &none                &none       &none         &none        &none        &none         
+                                         &mo MAINT                 &trans               &trans                    &none                                   
                 >;
         };
 
         MAINT {
             bindings = <
-                &bt BT_CLR  &none        &none        &none        &to TETRIS           &none       &bt BT_PRV   &bt BT_NXT   &none        &none         
-                &bootloader &none        &none        &none        &none                &none       &to DEFAULT  &kp I        &none        &bootloader   
-                &none       &none        &none        &none        &none                &none       &none        &none        &none        &none         
-                                         &none                     &none                &none                    &none                                   
+                &bt BT_CLR  &none        &none        &none        &to TETRIS           &none       &bt BT_PRV    &bt BT_NXT   &none        &none         
+                &bootloader &none        &none        &none        &none                &none       &to DEFAULT   &kp I        &none        &bootloader   
+                &none       &none        &tog COLEMAK &none        &none                &none       &none         &none        &none        &none         
+                                         &none                     &none                &none                     &none                                   
                 >;
         };
 
         TETRIS {
             bindings = <
-                &kp ESC     &none        &none        &kp R        &none                &none       &kp N1       &kp N2       &kp N3       &kp N4        
-                &none       &kp Z        &kp X        &kp C        &kp A                &none       &kp LEFT     &kp DOWN     &kp RIGHT    &none         
-                &none       &none        &none        &none        &none                &none       &none        &none        &none        &to DEFAULT   
-                                         &none                     &kp SPACE            &kp LEFT                 &none                                   
+                &kp ESC     &none        &none        &kp R        &none                &none       &kp N1        &kp N2       &kp N3       &kp N4        
+                &none       &kp Z        &kp X        &kp C        &kp A                &none       &kp LEFT      &kp DOWN     &kp RIGHT    &none         
+                &none       &none        &none        &none        &none                &none       &none         &none        &none        &to DEFAULT   
+                                         &none                     &kp SPACE            &kp LEFT                  &none                                   
                 >;
         };
+
     };
 };
