@@ -1,6 +1,7 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
 
 #define DEFAULT 0
 #define COLEMAK 1
@@ -160,7 +161,7 @@
             bindings = <
                 WM(Q)       WM(J)        WM(K)        WM(R)        WM(T)                &kp CARET    &kp DOLLAR   &kp LBRC     &kp RBRC     &kp RET      
                 WM(A)       WM(S)        WM(D)        WM(F)        WM(G)                &kp PLUS     &kp MINUS    &kp EQUAL    &kp EXCL     &kp PRCNT    
-                &none       &none        &none        &none        WM(B)                &kp STAR     &kp SLASH    &kp LT       &kp GT       &kp UNDER    
+                WM(Z)       WM(X)        WM(C)        WM(V)        WM(B)                &kp STAR     &kp SLASH    &kp LT       &kp GT       &kp UNDER    
                                          WM(Y)                     &trans               &none                     &trans                                  
                 >;
         };
@@ -185,7 +186,7 @@
 
         MAINT {
             bindings = <
-                &bt BT_CLR  &none        &none        &none        &to TETRIS           &none       &bt BT_PRV    &bt BT_NXT   &none        &none         
+                &bt BT_CLR  &none        &none        &none        &to TETRIS          &out OUT_TOG &bt BT_PRV    &bt BT_NXT   &none        &none         
                 &bootloader &none        &none        &none        &none                &none       &to DEFAULT   &kp I        &none        &bootloader   
                 &none       &none        &tog COLEMAK &none        &none                &none       &none         &none        &none        &none         
                                          &none                     &none                &none                     &none                                   
