@@ -188,7 +188,7 @@
             bindings = <
                 &bt BT_CLR  &none        &none        &none        &to TETRIS          &out OUT_TOG &bt BT_PRV    &bt BT_NXT   &none        &none         
                 &bootloader &none        &none        &none        &none                &none       &to DEFAULT   &kp I        &none        &bootloader   
-                &none       &none        &tog COLEMAK &none        &none                &none       &none         &none        &none        &none         
+                &sys_reset  &none        &tog COLEMAK &none        &none                &none       &none         &none        &none        &sys_reset    
                                          &none                     &none                &none                     &none                                   
                 >;
         };
